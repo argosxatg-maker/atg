@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArgosX - The Guardian | Loyalty Never Dies ⚔️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Roboto:wght@300&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: radial-gradient(circle at center, #2a1e11 0%, #0a0a0a 90%);
+      background-attachment: fixed;
+      color: #e0c788;
+      overflow-x: hidden;
+    }
+
+    /* HERO SECTION */
+    header {
+      text-align: center;
+      padding: 120px 20px 60px;
+      position: relative;
+      z-index: 2;
+    }
+    header img {
+      width: 280px;
+      filter: drop-shadow(0 0 40px rgba(201, 169, 97, 0.7));
+      opacity: 0;
+      transform: scale(0.8);
+      border-radius: 50%;
+    }
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 3.5rem;
+      letter-spacing: 3px;
+      color: #c9a961;
+      margin-top: 20px;
+      text-shadow: 0 0 15px rgba(201, 169, 97, 0.5);
+    }
+    .subtitle {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      color: #b89f6b;
+      margin-top: 10px;
+      letter-spacing: 2px;
+    }
+    .tagline {
+      font-size: 1.3rem;
+      color: #c9a961;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    /* STORY */
+    section.story {
+      width: 90%;
+      max-width: 1000px;
+      margin: 80px auto;
+      line-height: 1.9;
+      font-size: 1.15rem;
+      position: relative;
+      color: #e3d6b3;
+      z-index: 2;
+    }
+    .story h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      color: #c9a961;
+      text-align: center;
+      margin-bottom: 40px;
+      text-shadow: 0 0 15px rgba(201, 169, 97, 0.4);
+    }
+    .line { 
+      opacity: 0; 
+      transform: translateY(40px);
+      margin-bottom: 20px;
+    }
+
+    /* TOKENOMICS */
+    section.tokenomics {
+      background: rgba(20, 15, 5, 0.85);
+      border-top: 2px solid #c9a961;
+      border-bottom: 2px solid #c9a961;
+      padding: 80px 20px;
+      text-align: center;
+      color: #f3e4b3;
+    }
+    section.tokenomics h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: #c9a961;
+      text-shadow: 0 0 15px rgba(201, 169, 97, 0.4);
+    }
+    .token-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 40px auto;
+    }
+    .token-card {
+      background: rgba(10, 10, 10, 0.8);
+      border: 2px solid #c9a961;
+      padding: 30px;
+      border-radius: 10px;
+      transition: all 0.3s;
+    }
+    .token-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(201, 169, 97, 0.3);
+    }
+    .token-card h3 {
+      font-family: 'Cinzel', serif;
+      color: #c9a961;
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
+    .token-card p {
+      font-size: 1.8rem;
+      color: #fff;
+      font-weight: bold;
+    }
+    .contract-info {
+      margin-top: 40px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 10px;
+      border: 1px solid #c9a961;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .contract-info h3 {
+      font-family: 'Cinzel', serif;
+      color: #c9a961;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+    .contract-address {
+      background: rgba(201, 169, 97, 0.1);
+      padding: 15px;
+      border-radius: 5px;
+      font-family: monospace;
+      font-size: 1rem;
+      color: #fff;
+      word-break: break-all;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .contract-address:hover {
+      background: rgba(201, 169, 97, 0.2);
+      transform: scale(1.02);
+    }
+
+    /* ROADMAP */
+    section.roadmap {
+      padding: 80px 20px;
+      background: linear-gradient(180deg, rgba(18, 14, 8, 0.8), rgba(0,0,0,0.9));
+      color: #e8d9b2;
+    }
+    .roadmap h2 {
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      color: #c9a961;
+      margin-bottom: 50px;
+      text-shadow: 0 0 15px rgba(201, 169, 97, 0.4);
+    }
+    .timeline {
+      max-width: 900px;
+      margin: 0 auto;
+      border-left: 3px solid #c9a961;
+      padding-left: 40px;
+    }
+    .milestone {
+      margin-bottom: 50px;
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    .milestone h3 {
+      font-family: 'Cinzel', serif;
+      color: #c9a961;
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+    .milestone p {
+      color: #d8c59a;
+      margin-top: 8px;
+      font-size: 1.1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 60px 20px;
+      color: #a8905f;
+      background: #0a0a0a;
+      border-top: 2px solid #c9a961;
+    }
+    .socials {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+    .socials a {
+      color: #c9a961;
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 12px 30px;
+      border: 2px solid #c9a961;
+      border-radius: 5px;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .socials a:hover {
+      background: #c9a961;
+      color: #000;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(201, 169, 97, 0.4);
+    }
+
+    /* PARTICLES + GLOW */
+    #particles-js {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+    }
+    .glow {
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      background: radial-gradient(circle at center, rgba(201, 169, 97, 0.08), transparent 70%);
+      z-index: 0;
+    }
+
+    /* UNMUTE BUTTON */
+    #unmuteBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #c9a961, #8b7355);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(201, 169, 97, 0.4);
+      z-index: 10;
+      transition: all 0.3s;
+    }
+    #unmuteBtn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(201, 169, 97, 0.6);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 { font-size: 2.5rem; }
+      .subtitle { font-size: 1.4rem; }
+      header img { width: 200px; }
+      .token-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <div class="glow"></div>
+
+  <header>
+    <img src="https://violet-careful-mastodon-320.mypinata.cloud/ipfs/bafybeic274aym3vbeizjvkvbxcea2s56wcjxfwtetzhxbiihudglfntse4" alt="ArgosX Logo" id="argosLogo" />
+    <h1>ARGOSX</h1>
+    <div class="subtitle">THE GUARDIAN</div>
+    <div class="tagline">⚔️ LOYALTY NEVER DIES ⚔️</div>
+  </header>
+
+  <section class="story">
+    <h2>🛡️ THE LEGEND OF ARGOS 🛡️</h2>
+    <p class="line"><strong>For 10 years, Argos waited...</strong></p>
+    <p class="line">In the ancient lands of Ithaca, a faithful warrior dog stood guard, loyal beyond measure. When his master Odysseus did not return, Argos made a choice that would echo through eternity.</p>
+    <p class="line"><strong>He would not wait any longer.</strong></p>
+    <p class="line">Armed with unwavering loyalty and a warrior's spirit, Argos ventured into the darkness to find his master. Through cursed lands filled with monsters, devils, and beasts that would make mortals tremble, he fought.</p>
+    <p class="line">Every battle. Every scar. Every victory. All in the name of <strong>loyalty that never dies.</strong></p>
+    <p class="line">Today, his spirit returns as <strong>ArgosX - The Guardian (ATG)</strong>, forged on Solana blockchain.</p>
+    <p class="line"><em>Born of warriors. Built for legends. Coming soon: An epic action game where YOU become the Guardian.</em></p>
+  </section>
+
+  <section class="tokenomics">
+    <h2>⚔️ ATG TOKENOMICS ⚔️</h2>
+    
+    <div class="token-grid">
+      <div class="token-card">
+        <h3>Total Minted</h3>
+        <p>10 TRILLION</p>
+      </div>
+      <div class="token-card">
+        <h3>🔥 Burned Forever</h3>
+        <p>3 TRILLION</p>
+      </div>
+      <div class="token-card">
+        <h3>💎 Circulating Supply</h3>
+        <p>7 TRILLION</p>
+      </div>
+      <div class="token-card">
+        <h3>⚡ Blockchain</h3>
+        <p>SOLANA</p>
+      </div>
+    </div>
+
+    <div class="contract-info">
+      <h3>🔥 ATG TOKEN CONTRACT ADDRESS 🔥</h3>
+      <p style="color: #ccc; margin-bottom: 15px; font-size: 0.95rem;">Solana Network | Click to Copy</p>
+      <div class="contract-address" onclick="copyAddress()" title="Click to copy">
+        DY19L7rBEXELNCmi86C1LcDYzYhE5oKZwMNyAYxHDMJE
+      </div>
+    </div>
+
+    <p style="margin-top: 40px; font-size: 1.2rem;"><strong>Liquidity:</strong> Will be added on Raydium & Orca (Q1 2026)</p>
+    <p style="margin-top: 10px; font-size: 1.2rem;"><strong>Exchanges:</strong> DEX & CEX listings planned</p>
+  </section>
+
+  <section class="roadmap">
+    <h2>🗺️ THE GUARDIAN'S PATH 🗺️</h2>
+    <div class="timeline">
+      <div class="milestone">
+        <h3>Q1 2026 - The Awakening</h3>
+        <p>✅ Token Launched on Solana</p>
+        <p>✅ Community Building Started</p>
+        <p>✅ Social Media Active</p>
+        <p>🔜 Raydium & Orca Liquidity Pools</p>
+      </div>
+      <div class="milestone">
+        <h3>Q2 2026 - The Rising</h3>
+        <p>🔜 CoinGecko & CoinMarketCap Listings</p>
+        <p>🔜 Jupiter Integration</p>
+        <p>🔜 5000+ Guardian Holders Target</p>
+        <p>🔜 Marketing Campaign Launch</p>
+      </div>
+      <div class="milestone">
+        <h3>Q3 2026 - The Battle</h3>
+        <p>🎮 ArgosX Guardian Game Beta Release</p>
+        <p>🎨 Limited Edition NFT Collection</p>
+        <p>🏆 Community Competitions & Rewards</p>
+        <p>🔥 Token Burn Events</p>
+      </div>
+      <div class="milestone">
+        <h3>Q4 2026 - The Legend</h3>
+        <p>🌟 Major CEX Listings</p>
+        <p>🎮 Full Game Launch</p>
+        <p>🌍 Global Marketing Expansion</p>
+        <p>💎 Guardian DAO Formation</p>
+        <p>🚀 Cross-Chain Bridge Development</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p style="font-size: 1.3rem; margin-bottom: 15px; font-family: 'Cinzel', serif;">⚔️ ARGOSX - THE GUARDIAN ⚔️</p>
+    <p style="margin-bottom: 10px;">Built on Solana | Loyalty Never Dies</p>
+    
+    <div class="socials">
+      <a href="https://t.me/+wxpzZR14l3M4NGY1" target="_blank">📱 TELEGRAM</a>
+      <a href="https://x.com/Argosx_atg" target="_blank">🐦 X (TWITTER)</a>
+    </div>
+
+    <p style="margin-top: 30px; font-size: 0.9rem; color: #666;">
+      © 2025 ArgosX - The Guardian | Disclaimer: Cryptocurrency investments carry risk. DYOR
+    </p>
+  </footer>
+
+  <button id="unmuteBtn">🎵 Unmute Music</button>
+
+  <audio id="bgMusic" loop preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_2c9cf4c5f2.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Logo animation with enhanced effect
+    gsap.to("#argosLogo", {
+      opacity: 1, 
+      scale: 1, 
+      duration: 2.5, 
+      ease: "power2.out",
+      delay: 0.5
+    });
+
+    // Scroll line animations
+    gsap.utils.toArray('.line').forEach((el, i) => {
+      gsap.to(el, {
+        scrollTrigger: {
+          trigger: el, 
+          start: "top 85%"
+        },
+        opacity: 1, 
+        y: 0, 
+        duration: 1.2, 
+        ease: 'power3.out', 
+        delay: i * 0.15
+      });
+    });
+
+    // Roadmap milestones animation
+    gsap.utils.toArray('.milestone').forEach((el, i) => {
+      gsap.to(el, {
+        scrollTrigger: {
+          trigger: el, 
+          start: "top 85%"
+        },
+        opacity: 1, 
+        x: 0, 
+        duration: 1.2, 
+        delay: i * 0.15
+      });
+    });
+
+    // Particle effect with custom golden color
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 100 },
+        color: { value: '#c9a961' },
+        shape: { type: 'circle' },
+        opacity: { 
+          value: 0.4,
+          random: true
+        },
+        size: { 
+          value: 3,
+          random: true
+        },
+        move: { 
+          enable: true, 
+          speed: 1,
+          direction: 'none',
+          random: true,
+          out_mode: 'out'
+        }
+      },
+      interactivity: {
+        events: {
+          onhover: {
+            enable: true,
+            mode: 'repulse'
+          }
+        }
+      }
+    });
+
+    // Music control with autoplay attempt
+    const music = document.getElementById('bgMusic');
+    const btn = document.getElementById('unmuteBtn');
+    
+    // Try to autoplay (may not work due to browser restrictions)
+    music.volume = 0.3;
+    
+    btn.addEventListener('click', () => {
+      if (music.paused) {
+        music.play().then(() => {
+          btn.textContent = '🔊 Music Playing';
+          setTimeout(() => {
+            btn.style.display = 'none';
+          }, 2000);
+        }).catch(err => {
+          console.log('Autoplay prevented:', err);
+          btn.textContent = '❌ Click Again';
+        });
+      }
+    });
+
+    // Copy contract address function
+    function copyAddress() {
+      const address = 'DY19L7rBEXELNCmi86C1LcDYzYhE5oKZwMNyAYxHDMJE';
+      navigator.clipboard.writeText(address).then(() => {
+        alert('✅ Contract Address Copied!\n\nDY19L7rBEXELNCmi86C1LcDYzYhE5oKZwMNyAYxHDMJE');
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+      });
+    }
+
+    // Smooth scrolling for any anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
